@@ -27,3 +27,25 @@ void ATankPlayerController::BeginPlay()
 	}
 
 }
+
+void ATankPlayerController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	AimTowardsCrosshair();
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("tick tick tick"));
+}
+
+
+void ATankPlayerController::AimTowardsCrosshair()
+{
+	if (!GetControlledTank())
+	{
+		return;
+	}
+
+	//Get world location if linetrace through crosshair
+	//if it hits the landscape
+		//tell controlled tank to aim at this point
+}
