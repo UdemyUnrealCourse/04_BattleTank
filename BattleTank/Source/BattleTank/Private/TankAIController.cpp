@@ -33,6 +33,24 @@ void ATankAIController::BeginPlay()
 	}
 }
 
+void ATankAIController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	auto PlayerTank = GetPlayerTank();
+	auto MyTank = GetControlledTank();
+
+	if (PlayerTank)
+	{
+		if (MyTank)
+		{
+			MyTank->AimAt(PlayerTank->GetActorLocation());
+		}
+	}
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("tick tick tick"));
+}
+
 ATank* ATankAIController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
